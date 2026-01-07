@@ -1,14 +1,24 @@
 /*******************************/
 /********* General CSS *********/
 /*******************************/
+:root {
+    --bg-color: #121212;
+    --surface-color: #1E1E1E;
+    --primary-text: #E0E0E0;
+    --secondary-text: #B0B0B0;
+    --accent-color: #FFAB00;
+    --accent-hover: #FFD740;
+    --error-color: #CF6679;
+}
+
 body {
-    color: #797979;
-    background: #ffffff;
-    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-text);
+    background: var(--bg-color);
+    font-family: 'Roboto', sans-serif;
 }
 
 .bg-dark {
-    background-color: #000 !important;
+    background-color: var(--bg-color) !important;
 }
 
 h1,
@@ -17,18 +27,19 @@ h3,
 h4,
 h5,
 h6 {
-    color: #414141;
+    color: var(--primary-text);
+    font-weight: 500;
 }
 
 a {
-    color: #313131;
+    color: var(--primary-text);
     transition: .3s;
 }
 
 a:hover,
 a:active,
 a:focus {
-    color: #FF8904;
+    color: var(--accent-color);
     outline: none;
     text-decoration: none;
 }
@@ -43,25 +54,24 @@ a:focus {
 }
 
 .btn {
-    padding: 12px 25px;
+    padding: 10px 24px;
     font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 500;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
     color: #000;
-    background: #FF8904;
-    border: 2px solid transparent;
-    border-radius: 0;
-    box-shadow: inset 0 0 0 50px #FF8904;
-    transition: ease-out 0.3s;
-    -webkit-transition: ease-out 0.3s;
-    -moz-transition: ease-out 0.3s;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .btn:hover {
-    color: #FF8904;
-    background: transparent;
-    box-shadow: inset 0 0 0 0 #FF8904;
-    border-color: #FF8904;
+    color: #000;
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
 #loader {
@@ -285,8 +295,23 @@ a:focus {
 .hero .hero-image img {
     max-width: 80%;
     max-height: 80%;
-    border: 15px solid #111;
     border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .hero .hero-content {
@@ -299,14 +324,14 @@ a:focus {
 }
 
 .hero .hero-text p {
-    color: #ffffff;
+    color: var(--primary-text);
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 15px;
 }
 
 .hero .hero-text h1 {
-    color: rgba(255, 138, 5, 0.8);
+    color: var(--accent-color);
     font-size: 45px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -340,14 +365,16 @@ a:focus {
     margin-top: 35px;
     color: #111111;
     background: #ffffff;
-    box-shadow: inset 0 0 0 50px #ffffff;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero .hero-btn .btn:hover {
     color: #FF8904;
     background: transparent;
-    box-shadow: inset 0 0 0 0 #ffffff;
     border-color: #FF8904;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 137, 4, 0.3);
 }
 
 .hero .hero-btn .btn:first-child {
@@ -553,12 +580,11 @@ a:focus {
 .about .progress {
     height: 10px;
     border-radius: 10px;
-    background: #dddddd;
 }
 
 .about .progress .progress-bar {
     width: 0px;
-    background: #FF8904;
+    background: linear-gradient(to right, #FF8904, #ffb347);
     border-radius: 10px;
     transition: 2s;
 }
@@ -673,15 +699,18 @@ a:focus {
 
 .experience .timeline .timeline-text {
     padding: 30px;
-    background: #111;
+    background: #fff;
+    /* Changed from #111 to white for lighter theme capability or keep dark but softer */
+    background: #1a1a1a;
     position: relative;
-    border-right: 5px solid #dddddd;
-    box-shadow: 0 0 60px rgba(0, 0, 0, .08);
+    border-right: 5px solid #333;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .experience .timeline .timeline-item.right .timeline-text {
     border-right: none;
-    border-left: 5px solid #dddddd;
+    border-left: 5px solid #333;
 }
 
 .experience .timeline .timeline-text h2 {
@@ -764,23 +793,32 @@ a:focus {
     margin-bottom: 30px;
     display: flex;
     align-items: center;
-    box-shadow: inset 0 0 0 0 transparent;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
     transition: ease-out 0.5s;
 }
 
 .service .service-item:hover {
-    box-shadow: inset 800px 0 0 0 #FF8904;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .service .service-icon {
     position: relative;
-    width: 150px;
-    min-height: 150px;
+    width: 100px;
+    /* Smaller icon box */
+    min-height: 100px;
+    margin-right: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #FF8904;
-    background: #000;
+    border-radius: 50%;
+    /* Circle icon */
+    background: #FFF8E1;
+    /* Light bg */
+    border: none;
 }
 
 .service .service-icon i {
@@ -813,9 +851,12 @@ a:focus {
     transition: 1s;
 }
 
-.service .service-item:hover .service-text h3,
+.service .service-item:hover .service-text h3 {
+    color: #FF8904;
+}
+
 .service .service-item:hover .service-text p {
-    color: #ffffff;
+    color: #666;
 }
 
 @media (max-width: 575.98px) {
@@ -850,90 +891,110 @@ a:focus {
     cursor: pointer;
     display: inline-block;
     margin: 5px;
-    padding: 6px 12px;
-    font-size: 14px;
+    padding: 8px 20px;
+    font-size: 12px;
     font-weight: 600;
-    color: #000;
-    background: #FF8904;
-    border: 2px solid transparent;
-    border-radius: 0;
-    box-shadow: inset 0 0 0 50px #FF8904;
-    transition: ease-out 0.3s;
-    -webkit-transition: ease-out 0.3s;
-    -moz-transition: ease-out 0.3s;
+    color: #444;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50px;
+    transition: .3s;
 }
 
 .portfolio #portfolio-filter li:hover,
 .portfolio #portfolio-filter li.filter-active {
-    color: #FF8904;
-    background: transparent;
-    box-shadow: inset 0 0 0 0 #FF8904;
-    border-color: #FF8904;
+    color: #fff;
+    background: #FF8904;
+    box-shadow: 0 4px 10px rgba(255, 137, 4, 0.3);
 }
 
+/* Compact Portfolio Section */
 .portfolio .portfolio-item {
     position: relative;
+    margin-bottom: 15px;
+    /* Reduced from 30px */
 }
 
 .portfolio .portfolio-wrap {
     position: relative;
     width: 100%;
+    border-radius: 8px;
+    /* Material Corner Radius */
+    overflow: hidden;
+    background: var(--surface-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.portfolio .portfolio-wrap:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    transform: translateY(-5px);
 }
 
 .portfolio .portfolio-img {
     position: relative;
     overflow: hidden;
+    height: 200px;
+    /* Force a compact height */
+    background: #ffffff;
+    /* White background */
 }
 
 .portfolio .portfolio-img img {
-    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transform: scale(1.1);
+    object-fit: contain;
+    /* Prevent stretching */
     transition: .5s;
 }
 
-.portfolio .portfolio-item:hover img {
-    margin-left: 15px;
-}
-
+/* Updated Text Section for Compactness */
 .portfolio .portfolio-text {
     position: relative;
-    height: 60px;
-    width: calc(100% - 30px);
-    margin: -30px 15px 30px 15px;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 10px 15px;
+    background: var(--surface-color);
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    background: #ffffff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, .12);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: none;
 }
 
 .portfolio .portfolio-text h3 {
-    width: calc(100% - 70px);
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 0 15px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary-text);
+    width: auto;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
 }
 
 .portfolio .portfolio-text a.btn {
-    width: 50px;
-    height: 50px;
-    padding: 0 0 2px 1px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 20px;
+    margin: 0;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 45px;
-    font-weight: 100;
+    background: transparent;
+    color: var(--accent-color);
+    box-shadow: none;
 }
 
-.portfolio .portfolio-item:hover a.btn {
-    color: #FF8904;
-    background: transparent;
-    box-shadow: inset 0 0 0 0 #FF8904;
-    border-color: #FF8904;
+.portfolio .portfolio-text a.btn:hover {
+    background: rgba(255, 171, 0, 0.1);
+    color: var(--accent-hover);
+    transform: none;
+    box-shadow: none;
 }
 
 
@@ -1043,9 +1104,10 @@ a:focus {
     margin-top: -70px;
     padding: 65px 35px 30px 35px;
     text-align: center;
-    background: #000;
-    border-radius: 500px;
-    border: 2px solid #FF8904;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: none;
 }
 
 .testimonial .testimonial-item p {
@@ -1105,22 +1167,24 @@ a:focus {
 }
 
 .contact .contact-form input {
-    color: #ffffff;
-    padding: 15px 0;
-    background: none;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(256, 256, 256, .5);
+    color: #fff;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    /* Glassmorphism effect */
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 15px;
+    backdrop-filter: blur(5px);
 }
 
 .contact .contact-form textarea {
-    color: #ffffff;
-    height: 90px;
-    padding: 15px 0;
-    background: none;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(256, 256, 256, .5);
+    color: #fff;
+    height: 120px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 .contact .contact-form .form-control::placeholder {
@@ -1135,16 +1199,17 @@ a:focus {
 
 .contact .contact-form .btn {
     margin-top: 35px;
-    color: #000;
+    color: #444;
     background: #ffffff;
-    box-shadow: inset 0 0 0 50px #ffffff;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .contact .contact-form .btn:hover {
     color: #FF8904;
-    background: transparent;
-    box-shadow: inset 0 0 0 0 #ffffff;
-    border-color: #FF8904;
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .contact .help-block ul {

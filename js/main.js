@@ -104,6 +104,23 @@
         $(this).addClass('filter-active');
         portfolioIsotope.isotope({filter: $(this).data('filter')});
     });
+
+    // Portfolio Modal Logic
+    $('#portfolioModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var title = button.data('title');
+        var image = button.data('image');
+        var description = button.data('description');
+        var client = button.data('client') || "Not Specified";
+        var tech = button.data('tech-stack') || "HTML, CSS, JS";
+
+        var modal = $(this);
+        modal.find('#modalTitle').text(title);
+        modal.find('#modalImage').attr('src', image);
+        modal.find('#modalDescription').text(description);
+        modal.find('#modalClient').text(client);
+        modal.find('#modalTech').text(tech);
+    });
     
 })(jQuery);
 
